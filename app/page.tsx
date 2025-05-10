@@ -7,7 +7,7 @@ export default function Page() {
         The Horizon Residences Portal: Keeping Our Community Connected
       </h1>
       <p className="mb-4">
-        {`Demonstrating that the github repo is connected to vercel, we believe in proactive and transparent management, 
+        {`As a Strata Committee, we believe in proactive and transparent management, 
         finding efficiency in clear processes and open communication to address the
         diverse needs of our residents. This extends to our commitment to financial
         responsibility, where early and diligent planning ensures the long-term stability 
