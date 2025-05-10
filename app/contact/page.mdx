@@ -1,0 +1,28 @@
+{/* app/contact/page.mdx */}
+# Contact Us
+
+We'd love to hear from you! Reach out using the details below:
+
+- **Address**: {process.env.NEXT_PUBLIC_CONTACT_ADDRESS}
+- **Phone**: <a href={`tel:${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}>{process.env.NEXT_PUBLIC_CONTACT_PHONE}</a>
+- **Email**: <a href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}>{process.env.NEXT_PUBLIC_CONTACT_EMAIL}</a>
+- **Instagram**: <a href={process.env.NEXT_PUBLIC_CONTACT_INSTAGRAM} target="_blank" rel="noopener noreferrer">Follow us</a>
+
+<style jsx>{`
+  div {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  h1 {
+    text-align: center;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    margin: 10px 0;
+  }
+`}</style>
