@@ -1,39 +1,8 @@
-import React from 'react';
-
-interface ContactDetailsProps {
-  email: string;
-  phone: string;
-  instagram: string;
-  address: string; // Added address
-}
-
-const ContactDetails: React.FC<ContactDetailsProps> = ({ email, phone, instagram, address }) => {
-  return (
-    <div>
-      <h2>General Inquiries</h2>
-      <p>
-        Email: <a href={`mailto:${email}`}>{email}</a>
-      </p>
-      <h2>Phone</h2>
-      <p>
-        Phone: <a href={`tel:${phone}`}>{phone}</a>
-      </p>
-      <h2>Instagram</h2>
-      <p>
-        Instagram: <a href={`https://instagram.com/${instagram}`}>@{instagram}</a>
-      </p>
-      <h2>Address</h2>
-      <p>{address}</p>
-    </div>
-  );
-};
-
 const ContactPage = () => {
-  // Access environment variables (make sure they are defined)
-  const email = process.env.CONTACT_EMAIL || 'info@example.com'; // Provide defaults
-  const phone = process.env.CONTACT_PHONE || '+1234567890';
-  const instagram = process.env.CONTACT_INSTAGRAM || 'mycompany';
-  const address = process.env.CONTACT_ADDRESS || '123 Main St, Anytown, USA'; // Default Address
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@example.com';
+  const phone = process.env.NEXT_PUBLIC_CONTACT_PHONE || '+1234567890';
+  const instagram = process.env.NEXT_PUBLIC_CONTACT_INSTAGRAM || 'mycompany';
+  const address = process.env.NEXT_PUBLIC_CONTACT_ADDRESS || '123 Main St, Anytown, USA';
 
   return (
     <div>
@@ -48,5 +17,3 @@ const ContactPage = () => {
     </div>
   );
 };
-
-export default ContactPage;
