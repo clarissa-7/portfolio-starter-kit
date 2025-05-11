@@ -9,9 +9,4 @@
   ],
  
   "cleanUrls": true,
-  "functions": {
-    "app/api/log-request-count/route.js": { "runtime": "edge" },
-    "app/api/check-request-status/route.js": { "runtime": "edge" },
-    "app/api/check-request-urgency/route.js": { "runtime": "edge" }
-  }
 }
