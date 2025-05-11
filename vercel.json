@@ -11,10 +11,7 @@
     "app/api/validate-urgency/route.js": { "runtime": "edge" },
     "app/api/log-request-count/route.js": { "runtime": "edge" },
     "app/api/check-request-status/route.js": { "runtime": "edge" },
-    "api/*.php": {
-      "runtime": "vercel-php@0.7.3"
-    },
-    "api/**/*.js": {
+    "api/**/*.{js,ts}": {
       "runtime": "vercel/node@20.x"
     }
   }
