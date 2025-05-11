@@ -7,14 +7,6 @@
       "schedule": "0 8 * * *"
     }
   ],
-
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next",
-      "config": { "buildCommand": "npm run strata-build" }
-    }
-  ],
  
   "cleanUrls": true,
   "functions": {
