@@ -13,6 +13,15 @@
     "app/api/check-request-status/route.js": { "runtime": "edge" },
     "api/*.php": {
       "runtime": "vercel-php@0.7.3"
+    },
+    "api/**/*.js": {
+      "runtime": "vercel/node@20.x"
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/bin/www"
+    }
+  ]
 }
