@@ -1,11 +1,11 @@
 {
   "regions": ["syd1"],
-  "crons": [
-    {
-      "path": "/api/maintenance-cron",
-      "schedule": "0 8 * * *"
-    }
-  ],
+  // "crons": [
+  //   {
+  //     "path": "/api/maintenance-cron",
+  //     "schedule": "0 8 * * *"
+  //   }
+  // ],
   "cleanUrls": true
   // "functions": {
   //   "app/api/validate-urgency/route.js": { "runtime": "edge" },
