@@ -1,42 +1,48 @@
-import { baseUrl } from 'app/sitemap'
-import { getBlogPosts } from 'app/blog/utils'
+import { baseUrl } from 'app/sitemap';
+import { getBlogPosts } from 'app/blog/utils';
 
 export async function GET() {
-  let allBlogs = await getBlogPosts()
+  let allBlogs = (await getBlogPosts()) || []; // Fallback to empty array
 
   const itemsXml = allBlogs
+    .filter((post) => {
+      // Skip posts with missing or invalid metadata
+      return (
+        post?.metadata &&
+        post.metadata.title &&
+        post.metadata.publishedAt &&
+        new Date(post.metadata.publishedAt).toString() !== 'Invalid Date'
+      );
+    })
     .sort((a, b) => {
-      if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
-        return -1
-      }
-      return 1
+      return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
     })
     .map(
-      (post) =>
-        `<item>
+      (post) => `
+        <item>
           <title>${post.metadata.title}</title>
           <link>${baseUrl}/blog/${post.slug}</link>
           <description>${post.metadata.summary || ''}</description>
-          <pubDate>${new Date(
-            post.metadata.publishedAt
-          ).toUTCString()}</pubDate>
+          <pubDate>${new Date(post.metadata.publishedAt).toUTCString()}</pubDate>
         </item>`
     )
-    .join('\n')
+    .join('\n');
 
   const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
     <channel>
-        <title>My Portfolio</title>
-        <link>${baseUrl}</link>
-        <description>This is my portfolio RSS feed</description>
-        ${itemsXml}
+      <title>My Portfolio</title>
+      <link>${baseUrl}</link>
+      <description>This is my portfolio RSS feed</description>
+      ${itemsXml}
     </channel>
-  </rss>`
+  </rss>`;
 
   return new Response(rssFeed, {
     headers: {
       'Content-Type': 'text/xml',
     },
-  })
+  });
 }
+
+export const runtime = 'edge'; // Keep edge runtime
