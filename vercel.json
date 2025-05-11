@@ -17,11 +17,5 @@
     "api/**/*.js": {
       "runtime": "vercel/node@20.x"
     }
-  },
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/bin/www"
-    }
-  ]
+  }
 }
