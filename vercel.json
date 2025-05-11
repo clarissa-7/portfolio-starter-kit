@@ -1,16 +1,25 @@
 {
   "regions": ["syd1"],
+
   "crons": [
     {
-      "path": "/api/contact-summary",
+      "path": "/api/maintenance-cron",
       "schedule": "0 8 * * *"
     }
   ],
+
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/next"
+      "use": "@vercel/next",
+      "config": { "buildCommand": "npm run strata-build" }
     }
   ],
-  "cleanUrls": true
+ 
+  "cleanUrls": true,
+  "functions": {
+    "app/api/log-request-count/route.js": { "runtime": "edge" },
+    "app/api/check-request-status/route.js": { "runtime": "edge" },
+    "app/api/check-request-urgency/route.js": { "runtime": "edge" }
+  }
 }
