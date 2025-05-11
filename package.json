@@ -4,7 +4,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "strata-build": "next build && echo 'Build completed for Horizon Residences'"
   },
   "dependencies": {
     "@tailwindcss/postcss": "4.0.0-alpha.13",
