@@ -2,11 +2,10 @@ import { baseUrl } from 'app/sitemap';
 import { getBlogPosts } from 'app/blog/utils';
 
 export async function GET() {
-  let allBlogs = (await getBlogPosts()) || []; // Fallback to empty array
+  const allBlogs = (await getBlogPosts()) || [];
 
   const itemsXml = allBlogs
     .filter((post) => {
-      // Skip posts with missing or invalid metadata
       return (
         post?.metadata &&
         post.metadata.title &&
@@ -45,4 +44,4 @@ export async function GET() {
   });
 }
 
-export const runtime = 'edge'; // Keep edge runtime
+export const runtime = 'edge';
