@@ -1,4 +1,4 @@
-import { BlogPosts } from 'app/components/posts'
+import BlogPosts from 'app/components/posts'; // Change to default import
 
 export default function Page() {
   return (
@@ -9,7 +9,7 @@ export default function Page() {
       <p className="mb-4">
         {`As a Strata Committee, we believe in proactive and transparent management, 
         finding efficiency in clear processes and open communication to address the
-        diverse needs of our residents. This extends to our commitment to financial
+        diverse needs of our residents. This extends to ouricumtment to financial
         responsibility, where early and diligent planning ensures the long-term stability 
         of our building, and our preference for resident feedback, which eases community 
         engagement and strengthens our collaborative environment.`}
@@ -18,5 +18,5 @@ export default function Page() {
         <BlogPosts />
       </div>
     </section>
-  )
+  );
 }
