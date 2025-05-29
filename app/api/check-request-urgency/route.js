@@ -11,6 +11,6 @@ export async function POST(request) {
   console.log('Maintenance Request:', { description, priority: isUrgent ? 'High' : 'Normal' });
   return new Response(null, {
     status: 308,
-    headers: { Location: '/thank-you' },
+    headers: { Location: '/blog/posts/thank-you' },
   });
 }
