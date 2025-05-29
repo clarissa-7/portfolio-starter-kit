@@ -1,19 +1,17 @@
-import Link from 'next/link'
-import { formatDate, getBlogPosts } from 'app/blog/utils'
+import Link from 'next/link';
+import { formatDate, getBlogPosts } from 'app/blog/utils';
 
-export function BlogPosts() {
-  let allBlogs = getBlogPosts()
+export default async function BlogPosts() {
+  const allBlogs = await getBlogPosts(); // Await the Promise to get the array
 
   return (
     <div>
       {allBlogs
         .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1
+          if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
+            return -1;
           }
-          return 1
+          return 1;
         })
         .map((post) => (
           <Link
@@ -32,5 +30,5 @@ export function BlogPosts() {
           </Link>
         ))}
     </div>
-  )
+  );
 }
