@@ -1,9 +1,9 @@
-import { BlogPosts } from 'app/components/posts'
+import BlogPosts from 'app/components/posts'; // Change to default import
 
 export const metadata = {
   title: 'Blog',
   description: 'Read my blog.',
-}
+};
 
 export default function Page() {
   return (
@@ -11,5 +11,5 @@ export default function Page() {
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Info</h1>
       <BlogPosts />
     </section>
-  )
+  );
 }
