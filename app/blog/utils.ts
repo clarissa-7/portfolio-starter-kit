@@ -1,4 +1,5 @@
-import fs from 'fs';
+// app/blog/utils.ts
+import { promises as fs } from 'fs';
 import path from 'path';
 
 type Metadata = {
@@ -37,19 +38,21 @@ function parseFrontmatter(fileContent: string) {
   return { metadata: metadata as Metadata, content };
 }
 
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
+async function getMDXFiles(dir: string) {
+  const files = await fs.readdir(dir);
+  return files.filter((file) => path.extname(file) === '.mdx');
 }
 
-function readMDXFile(filePath: string) {
-  const rawContent = fs.readFileSync(filePath, 'utf-8');
+async function readMDXFile(filePath: string) {
+  const rawContent = await fs.readFile(filePath, 'utf-8');
   return parseFrontmatter(rawContent);
 }
 
-function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
+async function getMDXData(dir: string) {
+  const mdxFiles = await getMDXFiles(dir);
+  const promises = mdxFiles.map(async (file) => {
+    const filePath = path.join(dir, file);
+    const { metadata, content } = await readMDXFile(filePath);
     const slug = path.basename(file, path.extname(file));
     return {
       metadata,
@@ -57,11 +60,12 @@ function getMDXData(dir: string) {
       content,
     };
   });
+  return Promise.all(promises);
 }
 
-export function getBlogPosts() {
+export async function getBlogPosts() {
   try {
-    return getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'));
+    return await getMDXData(path.join(process.cwd(), 'app', 'blog', 'posts'));
   } catch (error) {
     console.error('Error reading blog posts:', error);
     return [];
