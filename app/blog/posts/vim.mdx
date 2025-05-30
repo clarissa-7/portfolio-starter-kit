@@ -34,13 +34,10 @@ To report a maintenance issue within the common areas of the building, please su
 <input type="checkbox" id="permission" name="permission" value="yes" /> Yes<br/>
 <input type="checkbox" id="permission" name="permission" value="no" /> No<br/><br/>
 
-<input type="submit" value="Submit Request" onClick="ThankYou()"/> 
+<form action="/blog/posts/thank-you" method="get">
+  <input type="submit" value="Submit Request" />
+</form>
 
-<script>
-  function ThankYou() {
-    window.location.href="/blog/posts/thank-you";  
-  }
-</script>
 </form>
 </details>
 
